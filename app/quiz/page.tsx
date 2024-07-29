@@ -17,22 +17,23 @@ export default function QuizPage() {
 
     return (
         <CenteredContainer>
-            <div onClick={logout} style={{ cursor: 'pointer', color: 'red', marginBottom: '20px' }}>
+            <div onClick={logout} className='absolute top-5 right-5 text-red-600 cursor-pointer'>
                 로그아웃
             </div>
             <Title level={2}>퀴즈</Title>
-            <div className='mb-4'>
-                <p className='text-xl mb-4'>{`질문 ${currentQuestionIndex + 1}: ${currentQuestion.question[0]} vs ${
-                    currentQuestion.question[1]
-                }`}</p>
-                <Button onClick={() => handleNextQuestion(0)} color='green'>
-                    {currentQuestion.question[0]}
-                </Button>
-                <Button onClick={() => handleNextQuestion(1)} color='blue'>
-                    {currentQuestion.question[1]}
-                </Button>
+            <div className='flex flex-col items-center justify-center'>
+                <p className='text-xl mb-4'>{`질문 ${currentQuestionIndex + 1}`}</p>
+                <div className='flex items-center justify-center space-x-12'>
+                    <Button onClick={() => handleNextQuestion(0)} color='green'>
+                        {currentQuestion.question[0]}
+                    </Button>
+                    <span className='text-2xl text-gray-500'>vs</span>
+                    <Button onClick={() => handleNextQuestion(1)} color='blue'>
+                        {currentQuestion.question[1]}
+                    </Button>
+                </div>
             </div>
-            <p className='text-center'>현재 {currentQuestionIndex + 1}번째 문제</p>
+            <p className='text-center mt-4'>현재 {currentQuestionIndex + 1}번째 문제</p>
         </CenteredContainer>
     );
 }
