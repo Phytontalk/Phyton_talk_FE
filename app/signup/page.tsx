@@ -36,12 +36,29 @@ export default function SignupPage() {
             <Input type='text' value={name} onChange={handleNameChange} placeholder='이름' color='green' />
             <div className='mb-4 flex items-center space-x-2'>
                 <Input type='text' value={email} onChange={handleEmailChange} placeholder='이메일' color='green' />
-                <Select value={domain} onChange={handleDomainChange} options={EMAIL_DOMAINS} color='green' />
+                <Select
+                    value={domain}
+                    onChange={handleDomainChange}
+                    options={EMAIL_DOMAINS.map((domain) => ({
+                        label: domain || '이메일을 선택해주세요!',
+                        value: domain,
+                    }))}
+                    color={'blue'}
+                />
             </div>
             <Input type='text' value={sns} onChange={handleSnsChange} placeholder='SNS' color='green' />
-            <Button onClick={handleSendCode} disabled={codeSent} timer={timer} color='green'>
-                {codeSent ? '인증 코드 재발송' : '인증 코드 발송'}
-            </Button>
+            <button
+                onClick={handleSendCode}
+                disabled={codeSent && timer !== 0}
+                className={`w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-75 ${
+                    codeSent && timer !== 0
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-green-500 hover:bg-green-700 focus:ring-green-400'
+                }`}
+            >
+                {codeSent && timer ? `다시 보내기 (${timer}s)` : '인증 코드 발송'}
+            </button>
+
             {codeSent && !codeVerified && (
                 <>
                     <Input

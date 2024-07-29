@@ -17,24 +17,24 @@ export const useSignup = () => {
     const navigate = useRouter();
 
     useEffect(() => {
-        let interval: NodeJS.Timeout | null = null;
-        if (codeSent && timer > 0 && !codeVerified) {
-            interval = setInterval(() => {
-                setTimer((prevTimer) => prevTimer - 1);
+        if (codeSent && !codeVerified) {
+            const interval = setInterval(() => {
+                console.log(timer);
+                setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
             }, 1000);
-        } else if (timer === 0) {
-            setCodeSent(false);
+            return () => clearInterval(interval);
+        } else {
             setTimer(60);
         }
-        return () => {
-            if (interval) {
-                clearInterval(interval);
-            }
-        };
-    }, [codeSent, timer, codeVerified]);
+    }, [codeSent, codeVerified, timer]);
 
     const handleSendCode = async () => {
         const fullEmail = `${email}${domain}`;
+        console.log(fullEmail);
+        if (domain === '') {
+            alert('이메일 도메인을 선택해주세요!');
+            return;
+        }
         if (!EMAIL_DOMAINS.includes(domain)) {
             alert('허용되지 않은 이메일 도메인입니다.');
             return;
