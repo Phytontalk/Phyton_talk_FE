@@ -68,7 +68,7 @@ export const handlers = [
 
     http.post<never, EmailRequestBody, EmailResponseBody, '/email'>('/email', async ({ request }) => {
         const { email } = await request.json();
-
+        console.log(1);
         if (email) {
             return HttpResponse.json(
                 { code: '1234', message: '이메일 발송에 성공하였습니다.' },
