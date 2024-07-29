@@ -1,9 +1,14 @@
 import React from 'react';
 
+interface Option {
+    label: string;
+    value: string;
+}
+
 interface SelectProps {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    options: string[];
+    options: Option[];
     color: 'green' | 'blue';
 }
 
@@ -15,9 +20,9 @@ const Select: React.FC<SelectProps> = ({ value, onChange, options, color }) => {
             onChange={onChange}
             className={`px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 ${focusRingColor} focus:border-transparent`}
         >
-            {options.map((option) => (
-                <option key={option} value={option}>
-                    {option}
+            {options.map((option, index) => (
+                <option key={index} value={option.value}>
+                    {option.label || option.value}
                 </option>
             ))}
         </select>
