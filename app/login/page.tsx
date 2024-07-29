@@ -17,7 +17,15 @@ export default function LoginPage() {
             <Title level={2}>로그인</Title>
             <div className='mb-4'>
                 <Input type='text' value={email} onChange={handleEmailChange} placeholder='이메일' color='blue' />
-                <Select value={domain} onChange={handleDomainChange} options={EMAIL_DOMAINS} color='blue' />
+                <Select
+                    value={domain}
+                    onChange={handleDomainChange}
+                    options={EMAIL_DOMAINS.map((domain) => ({
+                        label: domain || '이메일을 선택해주세요!',
+                        value: domain,
+                    }))}
+                    color='blue'
+                />
                 <Input
                     type='password'
                     value={password}
