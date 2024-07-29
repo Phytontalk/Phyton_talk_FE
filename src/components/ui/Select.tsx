@@ -1,16 +1,5 @@
 import React from 'react';
-
-interface Option {
-    label: string;
-    value: string;
-}
-
-interface SelectProps {
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    options: Option[];
-    color: 'green' | 'blue';
-}
+import { SelectProps } from '@/src/types/componentTypes';
 
 const Select: React.FC<SelectProps> = ({ value, onChange, options, color }) => {
     const focusRingColor = color === 'green' ? 'focus:ring-green-400' : 'focus:ring-blue-400';

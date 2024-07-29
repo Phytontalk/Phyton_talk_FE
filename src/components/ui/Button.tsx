@@ -1,10 +1,5 @@
 import React from 'react';
-
-interface ButtonProps {
-    onClick: () => void; // onClick 이벤트 핸들러 필수
-    children: React.ReactNode; // 버튼 내용
-    color: 'green' | 'blue'; // 버튼 색상 선택
-}
+import { ButtonProps } from '@/src/types/componentTypes';
 
 const Button: React.FC<ButtonProps> = ({ onClick, color, children, disabled, timer }) => {
     const baseStyle =

@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface CenteredContainerProps {
-    children: React.ReactNode;
-}
+import { CenteredContainerProps } from '@/src/types/componentTypes';
 
 const CenteredContainer: React.FC<CenteredContainerProps> = ({ children }) => {
     return (

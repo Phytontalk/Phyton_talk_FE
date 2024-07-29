@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface TitleProps {
-    children: React.ReactNode;
-    level: 1 | 2 | 3 | 4 | 5 | 6;
-}
+import { TitleProps } from '@/src/types/componentTypes';
 
 const Title: React.FC<TitleProps> = ({ children, level }) => {
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;

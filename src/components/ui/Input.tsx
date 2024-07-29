@@ -1,12 +1,5 @@
 import React from 'react';
-
-interface InputProps {
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    type: 'text' | 'password';
-    placeholder: string;
-    color: 'green' | 'blue';
-}
+import { InputProps } from '@/src/types/componentTypes';
 
 const Input: React.FC<InputProps> = ({ value, onChange, type, placeholder, color }) => {
     const focusRingColor = color === 'green' ? 'focus:ring-green-400' : 'focus:ring-blue-400';
