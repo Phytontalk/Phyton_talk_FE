@@ -1,4 +1,3 @@
-// src/hooks/useUser.ts
 import { useState, useEffect } from 'react';
 import { getUserInfo, updateUser } from '../api/userFetchApi';
 import { User, UserModifiedData } from '../types/apiHandler';
@@ -9,9 +8,10 @@ export const useUser = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>('');
     const [editData, setEditData] = useState<UserModifiedData | null>(null);
+    const [memberId, setMemberId] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        const memberId = getUserId();
+        setMemberId(getUserId());
 
         if (!memberId) {
             setError('No user ID found');
@@ -45,7 +45,9 @@ export const useUser = () => {
     const handleSave = async () => {
         if (!editData || !user) return;
         try {
-            await updateUser(user.id, editData);
+            if (memberId) {
+                await updateUser(memberId, editData);
+            }
             alert('User updated successfully');
         } catch (error) {
             console.error('Failed to update user:', error);

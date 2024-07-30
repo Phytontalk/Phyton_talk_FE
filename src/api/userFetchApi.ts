@@ -52,3 +52,13 @@ export const deleteUser = async (memberId: string) => {
         throw error;
     }
 };
+
+export const getFriendRecommendations = async (memberId: string) => {
+    try {
+        const response = await axiosInstance.get(`/friend/${memberId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching friend recommendations:', error);
+        throw error;
+    }
+};
