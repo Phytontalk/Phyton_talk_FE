@@ -21,3 +21,34 @@ export const updateUser = async (memberId: string, data: { name: string; sns: st
         throw error;
     }
 };
+
+export const getPassword = async (memberId: string) => {
+    try {
+        const response = await axiosInstance.get(`/member/${memberId}/password`);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching password:', error);
+        throw error;
+    }
+};
+
+export const updatePassword = async (memberId: string, password: string) => {
+    try {
+        const response = await axiosInstance.put(`/member/${memberId}/password`, { password });
+        return response.data;
+    } catch (error) {
+        console.error('Failed to update password:', error);
+        throw error;
+    }
+};
+
+export const deleteUser = async (memberId: string) => {
+    try {
+        const response = await axiosInstance.delete(`/member/${memberId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Failed to delete user:', error);
+        throw error;
+    }
+};
