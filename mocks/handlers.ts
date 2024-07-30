@@ -5,6 +5,7 @@ import {
     EmailRequestBody,
     EmailResponseBody,
     QuestionsResponseBody,
+    UserInfoResponse,
 } from '@/src/types/apiHandler';
 
 export const handlers = [
@@ -40,7 +41,7 @@ export const handlers = [
                 {
                     status: 200,
                     headers: {
-                        'Set-Cookie': 'token=Bearer token; Path=/;',
+                        'Set-Cookie': 'token=1234; Path=/;',
                     },
                 }
             );
@@ -83,6 +84,24 @@ export const handlers = [
                     status: 400,
                 }
             );
+        }
+    }),
+
+    http.get<{ memberId: string }, UserInfoResponse, any>('/member/:memberId', async ({ params }) => {
+        const { memberId } = params;
+        console.log(memberId);
+        if (memberId) {
+            return HttpResponse.json(
+                {
+                    name: '이름',
+                    email: '123@pusan.ac.kr',
+                    sns: 'hello',
+                    avatar: 'avatar1',
+                },
+                { status: 200 }
+            );
+        } else {
+            return HttpResponse.json({ message: 'Error' }, { status: 404 });
         }
     }),
 
