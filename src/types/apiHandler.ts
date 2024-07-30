@@ -52,3 +52,11 @@ export interface UserModifiedData {
     sns: string;
     avatar: string;
 }
+
+export interface Friend {
+    friendId: string;
+    name: string;
+    sns: string;
+    avatar: string;
+    type: string;
+}
