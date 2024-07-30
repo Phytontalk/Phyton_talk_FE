@@ -46,3 +46,9 @@ export interface User {
     sns: string;
     avatar: string;
 }
+
+export interface UserModifiedData {
+    name: string;
+    sns: string;
+    avatar: string;
+}
