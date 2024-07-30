@@ -87,6 +87,20 @@ export const handlers = [
         }
     }),
 
+    http.put<{ memberId: string }, { name: string; sns: string; avatar: string }, any>(
+        '/member/:memberId',
+        async ({ params, request }) => {
+            const { name, sns, avatar } = await request.json();
+            return HttpResponse.json(
+                {
+                    message: 'User updated successfully.',
+                    updatedUser: { name, sns, avatar },
+                },
+                { status: 200 }
+            );
+        }
+    ),
+
     http.get<{ memberId: string }, UserInfoResponse, any>('/member/:memberId', async ({ params }) => {
         const { memberId } = params;
         console.log(memberId);
