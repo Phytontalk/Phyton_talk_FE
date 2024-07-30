@@ -1,4 +1,4 @@
-type CookieMap = { [key: string]: string };
+import { CookieMap } from '../types/apiHandler';
 
 export const checkAuth = (): boolean => {
     const cookies = document.cookie.split(';').reduce<CookieMap>((acc, cookie) => {
@@ -11,5 +11,5 @@ export const checkAuth = (): boolean => {
     }, {});
 
     console.log('Parsed cookies:', cookies);
-    return cookies['token'] === 'Bearer token';
+    return cookies['token'] ? true : false;
 };

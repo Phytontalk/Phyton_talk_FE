@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Question = {
     questionId: string;
@@ -9,6 +10,7 @@ export const useQuiz = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState<number[]>([]);
+    const navigate = useRouter();
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -51,6 +53,7 @@ export const useQuiz = () => {
 
                 if (response.ok) {
                     alert('게임이 끝났습니다! 답변이 제출되었습니다.');
+                    navigate.push('/user');
                 } else {
                     console.error('Failed to submit answers:', response.statusText);
                 }
