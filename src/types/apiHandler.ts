@@ -28,9 +28,21 @@ export type AnswerRequestBody = {
     memberId: string;
 };
 
+export type UserInfoResponse = { name: string; email: string; sns: string; avatar: string };
+export type ErrorResponse = { message: string };
+
+export type CookieMap = { [key: string]: string };
+
 export interface SignupPayload {
     name: string;
     email: string;
     password: string;
     sns: string;
+}
+
+export interface User {
+    name: string;
+    email: string;
+    sns: string;
+    avatar: string;
 }

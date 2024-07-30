@@ -19,3 +19,15 @@ export const logout = async () => {
         console.error('Logout failed:', error);
     }
 };
+
+export const getUserInfo = async (memberId: string) => {
+    try {
+        console.log(memberId);
+        const response = await axiosInstance.get(`/member/${memberId}`);
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user info:', error);
+        throw error;
+    }
+};
