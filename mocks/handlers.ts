@@ -143,4 +143,30 @@ export const handlers = [
             return HttpResponse.json({ message: '답변 제출에 실패하였습니다.' }, { status: 400 });
         }
     }),
+
+    http.get<{ memberId: string }, any, any>('/friend/:memberId', async ({ params }) => {
+        const { memberId } = params;
+        console.log(memberId);
+        return HttpResponse.json(
+            {
+                friends: [
+                    {
+                        friendId: '123',
+                        name: '이름',
+                        sns: 'hello',
+                        avatar: 'URL',
+                        type: 'good',
+                    },
+                    {
+                        friendId: '456',
+                        name: '다른 이름',
+                        sns: 'hello again',
+                        avatar: 'URL',
+                        type: 'bad',
+                    },
+                ],
+            },
+            { status: 200 }
+        );
+    }),
 ];
