@@ -5,6 +5,7 @@ import Button from '@/src/components/ui/Button';
 import CenteredContainer from '@/src/components/layout/CenteredContainer';
 import Title from '@/src/components/ui/Title';
 import { logout } from '@/src/api/loginFetchApi';
+import Link from 'next/link';
 
 export default function QuizPage() {
     const { questions, currentQuestionIndex, handleNextQuestion } = useQuiz();
@@ -20,6 +21,7 @@ export default function QuizPage() {
             <div onClick={logout} className='absolute top-5 right-5 text-red-600 cursor-pointer'>
                 로그아웃
             </div>
+            <Link href='/friend'>추천 친구 보기</Link>
             <Title level={2}>퀴즈</Title>
             <div className='flex flex-col items-center justify-center'>
                 <p className='text-xl mb-4'>{`질문 ${currentQuestionIndex + 1}`}</p>
