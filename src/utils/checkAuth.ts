@@ -6,10 +6,9 @@ export const checkAuth = (): boolean => {
         if (key && value) {
             acc[key.trim()] = value.trim();
         }
-        console.log(acc);
         return acc;
     }, {});
 
     console.log('Parsed cookies:', cookies);
-    return cookies['token'] ? true : false;
+    return cookies['user'] ? true : false;
 };

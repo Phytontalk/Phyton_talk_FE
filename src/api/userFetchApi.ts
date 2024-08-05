@@ -2,7 +2,6 @@ import axiosInstance from './instance';
 
 export const getUserInfo = async (memberId: string) => {
     try {
-        console.log(memberId);
         const response = await axiosInstance.get(`/member/${memberId}`);
         console.log(response);
         return response.data;
@@ -12,9 +11,10 @@ export const getUserInfo = async (memberId: string) => {
     }
 };
 
-export const updateUser = async (memberId: string, data: { name: string; sns: string; avatar: string }) => {
+export const updateUser = async (memberId: string, data: { name: string; sns: string; avatar: number }) => {
     try {
         const response = await axiosInstance.put(`/member/${memberId}`, data);
+        console.log(response);
         return response.data;
     } catch (error) {
         console.error('Failed to update user:', error);
@@ -22,11 +22,10 @@ export const updateUser = async (memberId: string, data: { name: string; sns: st
     }
 };
 
-export const getPassword = async (memberId: string) => {
+export const getPassword = async (memberId: string, password: string) => {
     try {
-        const response = await axiosInstance.get(`/member/${memberId}/password`);
-        console.log(response);
-        return response.data;
+        const response = await axiosInstance.post(`/member/${memberId}/password`, { password });
+        return response.status === 200;
     } catch (error) {
         console.error('Error fetching password:', error);
         throw error;

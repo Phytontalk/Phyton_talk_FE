@@ -1,9 +1,12 @@
 import axiosInstance from './instance';
 
-export const login = async (email: string, password: string) => {
+export const login = async ({ email, password }: { email: string; password: string }) => {
     try {
         const response = await axiosInstance.post('/login', { email, password });
-        console.log(response);
+        const memberId = response.headers.memberid;
+        if (memberId) {
+            document.cookie = `user=${memberId}; path=/; max-age=86400;`; // 1일 동안 유효
+        }
         //localStorage.setItem('token', response.headers.common['Authorization']);
         return response.data;
     } catch (error) {
@@ -11,9 +14,11 @@ export const login = async (email: string, password: string) => {
         throw error;
     }
 };
+
 export const logout = async () => {
     try {
         await axiosInstance.post('/logout');
+        document.cookie = `user=; path=/;`;
         window.location.href = '/';
     } catch (error) {
         console.error('Logout failed:', error);

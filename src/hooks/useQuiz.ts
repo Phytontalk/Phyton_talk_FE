@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { getDailyQuiz } from '../api/quizFetchApi';
 
 type Question = {
     questionId: string;
@@ -15,9 +16,17 @@ export const useQuiz = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await fetch('/question/today');
+                //const data = await getDailyQuiz();
+                const response = await fetch('http://43.202.81.192:8081/quiz/daily');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 const data = await response.json();
-                setQuestions(data.questions);
+                if (data.questions && data.questions.length > 0) {
+                    setQuestions(data);
+                } else {
+                    console.log('No questions found in the response');
+                }
             } catch (error) {
                 console.error('Failed to fetch questions', error);
             }
@@ -28,22 +37,23 @@ export const useQuiz = () => {
 
     const handleNextQuestion = (answer: number) => {
         setAnswers([...answers, answer]);
-        if (currentQuestionIndex < questions.length - 1) {
+        if (currentQuestionIndex < questions.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
             submitAnswers();
+            console.log(answers);
         }
     };
 
     const submitAnswers = async () => {
         const token = document.cookie
             .split('; ')
-            .find((row) => row.startsWith('token='))
+            .find((row) => row.startsWith('user='))
             ?.split('=')[1];
 
         if (token) {
             try {
-                const response = await fetch(`/answer/${token}`, {
+                const response = await fetch(`http://43.202.81.192:8081/answer/${token}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +63,7 @@ export const useQuiz = () => {
 
                 if (response.ok) {
                     alert('게임이 끝났습니다! 답변이 제출되었습니다.');
-                    navigate.push('/user');
+                    navigate.push('/quiz');
                 } else {
                     console.error('Failed to submit answers:', response.statusText);
                 }

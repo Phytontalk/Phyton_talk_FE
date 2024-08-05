@@ -9,6 +9,7 @@ export const useSignup = () => {
     const [domain, setDomain] = useState('');
     const [password, setPassword] = useState('');
     const [sns, setSns] = useState('');
+    const [birth, setBirth] = useState('');
     const [verificationCode, setVerificationCode] = useState('');
     const [codeSent, setCodeSent] = useState(false);
     const [codeVerified, setCodeVerified] = useState(false);
@@ -67,6 +68,7 @@ export const useSignup = () => {
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
     const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => setDomain(e.target.value);
+    const handleBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => setBirth(e.target.value);
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
     const handleSnsChange = (e: React.ChangeEvent<HTMLInputElement>) => setSns(e.target.value);
     const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -80,7 +82,7 @@ export const useSignup = () => {
 
         const fullEmail = `${email}${domain}`;
         try {
-            await signup({ name, email: fullEmail, password, sns });
+            await signup({ name, email: fullEmail, password, sns, birthDate: birth });
             alert('회원가입이 완료되었습니다.');
             navigate.push('/');
         } catch (error) {
@@ -98,6 +100,7 @@ export const useSignup = () => {
         codeSent,
         codeVerified,
         timer,
+        birth,
         handleNameChange,
         handleEmailChange,
         handleDomainChange,
@@ -107,5 +110,6 @@ export const useSignup = () => {
         handleSendCode,
         handleVerifyCode,
         handleSignup,
+        handleBirthChange,
     };
 };

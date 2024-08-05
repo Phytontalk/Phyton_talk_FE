@@ -2,11 +2,7 @@ import React from 'react';
 import { CenteredContainerProps } from '@/src/types/componentTypes';
 
 const CenteredContainer: React.FC<CenteredContainerProps> = ({ children }) => {
-    return (
-        <div className='min-h-screen flex flex-col items-center justify-center bg-gray-50'>
-            <div className='w-full max-w-md bg-white shadow-lg rounded-lg p-8'>{children}</div>
-        </div>
-    );
+    return <div className='flex items-center justify-center min-h-screen bg-[#1D203E]'>{children}</div>;
 };
 
 export default CenteredContainer;

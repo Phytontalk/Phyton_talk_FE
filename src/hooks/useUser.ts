@@ -8,23 +8,19 @@ export const useUser = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>('');
     const [editData, setEditData] = useState<UserModifiedData | null>(null);
-    const [memberId, setMemberId] = useState<string | undefined>(undefined);
+    const memberId = getUserId(); // Assume getUserId is synchronous
 
     useEffect(() => {
-        setMemberId(getUserId());
-
         if (!memberId) {
             setError('No user ID found');
             setLoading(false);
             return;
         }
-
         const fetchUser = async () => {
             try {
                 const data = await getUserInfo(memberId);
                 setUser(data);
                 setEditData({ name: data.name, sns: data.sns, avatar: data.avatar });
-                setError('');
             } catch (err) {
                 console.error('Failed to fetch user:', err);
                 setError('404');
@@ -32,23 +28,21 @@ export const useUser = () => {
                 setLoading(false);
             }
         };
-
         fetchUser();
-    }, []);
+    }, [memberId]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
         if (editData) {
-            setEditData({ ...editData, [e.target.name]: e.target.value });
+            setEditData({ ...editData, [name]: value });
         }
     };
 
     const handleSave = async () => {
         if (!editData || !user) return;
         try {
-            if (memberId) {
-                await updateUser(memberId, editData);
-            }
-            alert('User updated successfully');
+            if (memberId) await updateUser(memberId, editData);
+            alert('변경되었습니다.');
         } catch (error) {
             console.error('Failed to update user:', error);
             alert('Failed to update user');

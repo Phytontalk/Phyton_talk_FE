@@ -27,10 +27,16 @@ export const useLogin = () => {
             alert('허용되지 않은 이메일 도메인입니다.');
             return;
         }
+
+        const loginData = {
+            email: fullEmail,
+            password: password,
+        };
+
         try {
-            await login(fullEmail, password);
+            await login(loginData);
             alert('로그인이 완료되었습니다.');
-            navigate.push('/');
+            navigate.push('/quiz');
         } catch (error) {
             console.error('Login error:', error);
         }

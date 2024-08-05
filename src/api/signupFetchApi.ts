@@ -1,9 +1,9 @@
 import axiosInstance from './instance';
 import { SignupPayload } from '../types/apiHandler';
 
-export const signup = async ({ name, email, password, sns }: SignupPayload) => {
+export const signup = async ({ name, email, password, sns, birthDate }: SignupPayload) => {
     try {
-        const response = await axiosInstance.post('/signup', { name, email, password, sns });
+        const response = await axiosInstance.post('/signup', { name, email, password, sns, birthDate });
         return response.data;
     } catch (error) {
         console.error('Signup error:', error);

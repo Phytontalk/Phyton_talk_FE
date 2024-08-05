@@ -41,7 +41,7 @@ export const handlers = [
                 {
                     status: 200,
                     headers: {
-                        'Set-Cookie': 'token=1234; Path=/;',
+                        'Set-Cookie': 'user=1234; Path=/;',
                     },
                 }
             );
@@ -61,7 +61,7 @@ export const handlers = [
             {
                 status: 200,
                 headers: {
-                    'Set-Cookie': 'token=; Max-Age=0; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+                    'Set-Cookie': 'user=; Max-Age=0; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
                 },
             }
         );
@@ -154,17 +154,28 @@ export const handlers = [
                         friendId: '123',
                         name: '이름',
                         sns: 'hello',
-                        avatar: 'URL',
+                        avatar: '/asset/1.png',
                         type: 'good',
                     },
                     {
                         friendId: '456',
                         name: '다른 이름',
                         sns: 'hello again',
-                        avatar: 'URL',
+                        avatar: '/asset/2.png',
                         type: 'bad',
                     },
                 ],
+            },
+            { status: 200 }
+        );
+    }),
+
+    http.get<{ memberId: string }, any, any>('/member/:memberId/password', async ({ params }) => {
+        const { memberId } = params;
+        console.log(memberId);
+        return HttpResponse.json(
+            {
+                password: '1234',
             },
             { status: 200 }
         );

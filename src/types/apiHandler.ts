@@ -38,25 +38,28 @@ export interface SignupPayload {
     email: string;
     password: string;
     sns: string;
+    birthDate: string;
 }
 
 export interface User {
     name: string;
     email: string;
     sns: string;
-    avatar: string;
+    avatar: number;
+    birthYear: string;
 }
 
 export interface UserModifiedData {
     name: string;
     sns: string;
-    avatar: string;
+    avatar: number;
 }
 
 export interface Friend {
     friendId: string;
     name: string;
     sns: string;
-    avatar: string;
+    avatar: number;
     type: string;
+    birthYear: string;
 }

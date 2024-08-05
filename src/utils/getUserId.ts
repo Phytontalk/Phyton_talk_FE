@@ -9,6 +9,5 @@ export const getUserId = (): string | undefined => {
         return acc;
     }, {});
 
-    console.log('Parsed cookies for user ID:', cookies);
-    return cookies['token'] ? cookies['token'] : undefined;
+    return cookies['user'] ? cookies['user'] : undefined;
 };

@@ -4,6 +4,7 @@ export interface ButtonProps {
     children: React.ReactNode;
     disabled?: boolean;
     timer?: number;
+    className: string;
 }
 
 export interface InputProps {
@@ -12,6 +13,7 @@ export interface InputProps {
     type: 'text' | 'password';
     placeholder: string;
     color: 'green' | 'blue';
+    className: string;
 }
 
 interface Option {
@@ -22,6 +24,7 @@ interface Option {
 export interface SelectProps {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    className: string;
     options: Option[];
     color: 'green' | 'blue';
 }
@@ -29,6 +32,7 @@ export interface SelectProps {
 export interface TitleProps {
     children: React.ReactNode;
     level: 1 | 2 | 3 | 4 | 5 | 6;
+    className: string;
 }
 
 export interface CenteredContainerProps {
