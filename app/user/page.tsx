@@ -3,17 +3,25 @@
 import { useUser } from '@/src/hooks/useUser';
 import CenteredContainer from '@/src/components/layout/CenteredContainer';
 import Title from '@/src/components/ui/Title';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PasswordConfirmModal from '@/src/components/layout/PasswordConfirmModal';
 import AvatarImage from '@/src/components/ui/AvatarImage';
 
 const UserProfilePage = () => {
     const { user, loading, error } = useUser();
     const [showModal, setShowModal] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const handleConfirmPassword = () => {
-        window.location.href = '/user/change';
+        if (isClient) {
+            window.location.href = '/user/change';
+        }
     };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
     if (!user) return <div>No user data available</div>;

@@ -8,14 +8,21 @@ export const useUser = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>('');
     const [editData, setEditData] = useState<UserModifiedData | null>(null);
-    const memberId = getUserId(); // Assume getUserId is synchronous
+    const [memberId, setMemberId] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        if (!memberId) {
+        const id = getUserId();
+        if (id) {
+            setMemberId(id);
+        } else {
             setError('No user ID found');
             setLoading(false);
-            return;
         }
+    }, []);
+
+    useEffect(() => {
+        if (!memberId) return;
+
         const fetchUser = async () => {
             try {
                 const data = await getUserInfo(memberId);
@@ -28,6 +35,7 @@ export const useUser = () => {
                 setLoading(false);
             }
         };
+
         fetchUser();
     }, [memberId]);
 
@@ -48,6 +56,7 @@ export const useUser = () => {
             alert('Failed to update user');
         }
     };
+
     const handleAvatarChange = (avatar: string) => {
         handleInputChange({
             target: {

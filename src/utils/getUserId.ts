@@ -1,3 +1,4 @@
+'use cleint';
 import { CookieMap } from '../types/apiHandler';
 
 export const getUserId = (): string | undefined => {
