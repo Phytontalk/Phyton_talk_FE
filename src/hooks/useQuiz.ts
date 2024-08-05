@@ -23,7 +23,8 @@ export const useQuiz = () => {
                 }
                 const data = await response.json();
                 if (data.questions && data.questions.length > 0) {
-                    setQuestions(data);
+                    console.log(data);
+                    setQuestions(data.questions);
                 } else {
                     console.log('No questions found in the response');
                 }
@@ -37,7 +38,7 @@ export const useQuiz = () => {
 
     const handleNextQuestion = (answer: number) => {
         setAnswers([...answers, answer]);
-        if (currentQuestionIndex < questions.questions.length - 1) {
+        if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
             submitAnswers();

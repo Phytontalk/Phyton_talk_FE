@@ -4,9 +4,7 @@ import { useQuiz } from '@/src/hooks/useQuiz';
 import CenteredContainer from '@/src/components/layout/CenteredContainer';
 import Title from '@/src/components/ui/Title';
 import { logout } from '@/src/api/loginFetchApi';
-import Link from 'next/link';
 import Navbar from '@/src/components/layout/Navbar';
-import { notoSansKr } from '../layout';
 
 export default function QuizPage() {
     const { questions, currentQuestionIndex, handleNextQuestion } = useQuiz();
@@ -15,7 +13,7 @@ export default function QuizPage() {
         return <div>로딩 중...</div>;
     }
 
-    const currentQuestion = questions.questions[currentQuestionIndex];
+    const currentQuestion = questions[currentQuestionIndex];
     return (
         <CenteredContainer>
             <div className='w-full flex flex-col items-center justify-center min-h-screen'>

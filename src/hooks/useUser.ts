@@ -48,6 +48,14 @@ export const useUser = () => {
             alert('Failed to update user');
         }
     };
+    const handleAvatarChange = (avatar: string) => {
+        handleInputChange({
+            target: {
+                name: 'avatar',
+                value: avatar,
+            } as any, // Type assertion to satisfy the expected structure of a synthetic event object
+        } as React.ChangeEvent<HTMLInputElement>);
+    };
 
-    return { user, editData, handleInputChange, handleSave, loading, error };
+    return { user, editData, handleAvatarChange, handleInputChange, handleSave, loading, error };
 };

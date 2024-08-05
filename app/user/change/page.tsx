@@ -8,7 +8,7 @@ import { useUser } from '@/src/hooks/useUser';
 import AvatarImage from '@/src/components/ui/AvatarImage';
 
 const UserProfilePage = () => {
-    const { editData, handleInputChange, handleSave, loading, error } = useUser();
+    const { editData, handleInputChange, handleSave, handleAvatarChange, loading, error } = useUser();
     const [showModal, setShowModal] = useState(false);
 
     if (loading) return <div>Loading...</div>;
@@ -67,7 +67,7 @@ const UserProfilePage = () => {
                 <AvatarChangeModal
                     isOpen={showModal}
                     onClose={() => setShowModal(false)}
-                    onSelectAvatar={(avatar) => handleInputChange({ target: { name: 'avatar', value: avatar } })}
+                    onSelectAvatar={(avatar) => handleAvatarChange(avatar.toString())}
                 />
             )}
         </CenteredContainer>
