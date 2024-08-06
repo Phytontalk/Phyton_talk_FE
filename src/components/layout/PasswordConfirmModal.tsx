@@ -31,7 +31,7 @@ const PasswordConfirmModal: React.FC<PasswordConfirmModalProps> = ({ onClose, on
     };
 
     return (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+        <div className='fixed notosans-kr inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
             <div className='bg-[#1D203E] p-8 text-white w-full max-w-md rounded-lg'>
                 <h2 className='text-xl mb-4'>비밀번호를 입력하세요</h2>
                 <input

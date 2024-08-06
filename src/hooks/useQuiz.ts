@@ -51,7 +51,7 @@ export const useQuiz = () => {
             .split('; ')
             .find((row) => row.startsWith('user='))
             ?.split('=')[1];
-
+        console.log(token);
         if (token) {
             try {
                 const response = await fetch(`http://43.202.81.192:8081/answer/${token}`, {

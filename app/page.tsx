@@ -34,20 +34,20 @@ const LandingPage = () => {
                         </span>
                         <span className='text-white relative z-10 text-9xl'>QnF</span>
                     </div>
-                    <Title level={2} className='text-xl text-white text-center mt-10 mb-48'>
+                    <Title level={2} className='notosans-kr  text-xl text-white text-center mt-10 mb-48'>
                         우리 학교에서 <br />
                         가장 잘맞는 친구 찾기
                     </Title>
                     <div className='space-y-4 mt-8'>
                         <Link
                             href='/login'
-                            className='w-64 flex justify-center items-center px-6 py-3 bg-[#7976E8] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#6858c5] focus:outline-none focus:ring-2 focus:ring-[#7976E8] focus:ring-opacity-75'
+                            className='w-64 flex notosans-kr justify-center items-center px-6 py-3 bg-[#7976E8] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#6858c5] focus:outline-none focus:ring-2 focus:ring-[#7976E8] focus:ring-opacity-75'
                         >
                             로그인
                         </Link>
                         <Link
                             href='/signup'
-                            className='w-64 flex justify-center items-center px-6 py-3 bg-[#7976E8] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#6858c5] focus:outline-none focus:ring-2 focus:ring-[#7976E8] focus:ring-opacity-75'
+                            className='w-64 flex notosans-kr justify-center items-center px-6 py-3 bg-[#7976E8] text-white text-lg font-semibold rounded-lg shadow-md hover:bg-[#6858c5] focus:outline-none focus:ring-2 focus:ring-[#7976E8] focus:ring-opacity-75'
                         >
                             회원가입
                         </Link>

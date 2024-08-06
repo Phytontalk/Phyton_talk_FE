@@ -3,3 +3,11 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Nanum+Gothic:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.notosans-kr {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.lemon {
+    font-family: 'Lemon', sans-serif;
+}

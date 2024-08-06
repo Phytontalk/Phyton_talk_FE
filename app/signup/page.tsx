@@ -2,8 +2,6 @@
 import { useSignup } from '@/src/hooks/useSignup';
 import { EMAIL_DOMAINS } from '@/src/constants/emailDomains';
 import CenteredContainer from '@/src/components/layout/CenteredContainer';
-import Input from '@/src/components/ui/Input';
-import Button from '@/src/components/ui/Button';
 
 export default function SignupPage() {
     const {

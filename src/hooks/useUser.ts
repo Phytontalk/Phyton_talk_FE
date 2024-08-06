@@ -14,6 +14,7 @@ export const useUser = () => {
         const id = getUserId();
         if (id) {
             setMemberId(id);
+            console.log(id);
         } else {
             setError('No user ID found');
             setLoading(false);

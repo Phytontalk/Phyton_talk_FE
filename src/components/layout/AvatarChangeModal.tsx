@@ -15,7 +15,7 @@ const AvatarChangeModal: React.FC<AvatarModalProps> = ({ isOpen, onClose, onSele
     return (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
             <div className='bg-[#1D203E] rounded-lg p-4'>
-                <div className='grid grid-cols-3 gap-4'>
+                <div className='grid grid-cols-2 gap-4'>
                     {avatars.map((avatar, index) => (
                         <div key={index} className='cursor-pointer p-2 hover:scale-110 transition-transform'>
                             <Image
