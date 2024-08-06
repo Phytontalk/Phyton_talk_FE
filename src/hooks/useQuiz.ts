@@ -11,12 +11,12 @@ export const useQuiz = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState<number[]>([]);
+    const [shouldSubmit, setShouldSubmit] = useState(false);
     const navigate = useRouter();
 
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                //const data = await getDailyQuiz();
                 const response = await fetch('http://43.202.81.192:8081/quiz/daily');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -36,13 +36,18 @@ export const useQuiz = () => {
         fetchQuestions();
     }, []);
 
+    useEffect(() => {
+        if (shouldSubmit) {
+            submitAnswers();
+        }
+    }, [shouldSubmit]);
+
     const handleNextQuestion = (answer: number) => {
-        setAnswers([...answers, answer]);
+        setAnswers((prevAnswers) => [...prevAnswers, answer]);
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            submitAnswers();
-            console.log(answers);
+            setShouldSubmit(true);
         }
     };
 
@@ -64,7 +69,7 @@ export const useQuiz = () => {
 
                 if (response.ok) {
                     alert('게임이 끝났습니다! 답변이 제출되었습니다.');
-                    navigate.push('/quiz');
+                    navigate.push('/friend');
                 } else {
                     console.error('Failed to submit answers:', response.statusText);
                 }
